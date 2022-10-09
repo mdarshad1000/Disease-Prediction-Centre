@@ -28,6 +28,5 @@ sklearn==0.0
 streamlit==1.10.0
 streamlit-option-menu==0.3.2
 sympy==1.10.1
-tensorflow-estimator==2.9.0
-tensorflow-macos==2.9.2
+
 
