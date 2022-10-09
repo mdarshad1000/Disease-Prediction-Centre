@@ -1,5 +1,6 @@
 # importing dependencies
 import pickle
+import numpy as np
 import streamlit as st
 from streamlit_option_menu import option_menu
 
@@ -15,6 +16,10 @@ with open('/Users/arshad/Desktop/Projects/Multiple-Disease-Prediction/Diabetes-P
 with open('/Users/arshad/Desktop/Projects/Multiple-Disease-Prediction/Heart-Disease-Prediction/heart_model.sav', 'rb') as heart_model:
     heart_model = pickle.load(heart_model)
 
+with open('/Users/arshad/Desktop/Projects/Multiple-Disease-Prediction/Breast-Cancer-Prediction/breast_model.sav', 'rb') as breast_model:
+    breast_model = pickle.load(breast_model)
+
+
 # Sidebar for Navigation
 with st.sidebar:
     
@@ -22,8 +27,9 @@ with st.sidebar:
 
                             ["Diabetes", 
                             "Parkinson's Disease",
-                            "Heart Disease"],
-                            icons=['activity', 'person','heart'],
+                            "Heart Disease",
+                            "Breast Cancer"],
+                            icons=['activity', 'person','heart', 'asterisk'],
                             default_index=0)
 
 
@@ -232,3 +238,123 @@ if selected == "Heart Disease":
     st.success(heart_diagnosis)
 
 
+
+# Breast Cancer Prediction 
+if selected == "Breast Cancer":
+    st.title("Breast Cancer Prediction using Neural Networks")
+
+    # getting the input data from the user
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        mean_radius =  st.text_input('Mean radius')
+
+    with col1:
+        mean_texture =  st.text_input('Mean texture')
+
+    with col1:
+        mean_perimeter =  st.text_input('Mean perimeter')
+
+    with col1:
+        mean_area =  st.text_input('Mean Area')
+
+    with col1:
+        mean_smoothness =  st.text_input('Mean smoothness')
+    
+    with col1:
+        mean_compactness =  st.text_input('mean Compactness')
+    
+    with col1:
+        mean_concavity =  st.text_input('Mean concavity')
+    
+    with col1:
+        mean_concave_points =  st.text_input('Mean concave points')
+    
+    with col1:
+        mean_symmetry =  st.text_input('Mean symmetry')
+
+    with col1:
+        mean_fractal_dimension =  st.text_input('Mean fractal dimension')
+
+    with col2:
+        radius_error =  st.text_input('Radius error')
+
+    with col2:
+        texture_error =  st.text_input('Texture Error')
+
+    with col2:
+        perimeter_error =  st.text_input('Perimeter Error')
+    
+    with col2:
+        area_error =  st.text_input('Area Error')
+    
+    with col2:
+        smoothness_error =  st.text_input('Smoothness Error')
+    
+    with col2:
+        compactness_error =  st.text_input('Compactness Error')
+
+    with col2:
+        concavity_error =  st.text_input('Concavity Error')
+
+    with col2:
+        concave_points_error =  st.text_input('Cocave Points error')
+
+    with col2:
+        symmetry_error =  st.text_input('Symmetry Error')
+
+    with col2:
+        fractal_dimension_error =  st.text_input('Fractal Dimension Error')
+
+    with col3:
+        worst_radius =  st.text_input('Worst Radius')
+    
+    with col3:
+        worst_texture =  st.text_input('Worst Texture')
+    
+    with col3:
+        worst_perimeter =  st.text_input('Worst Perimeter')
+    
+    with col3:
+        worst_area =  st.text_input('Worst Area')
+
+    with col3:
+        worst_smoothness =  st.text_input('Worst Smoothness')
+
+    with col3:
+        worst_compactness =  st.text_input('Worst Comapctness')
+
+    with col3:
+        worst_concavity =  st.text_input('Worst Concavity')
+
+    with col3:
+        worst_concavity =  st.text_input('Worst Concave Points')
+
+    with col3:
+        worst_symmetry =  st.text_input('Worst Symmetry')
+    
+    with col3:
+        worst_fractal_dimension =  st.text_input('Worst Fractal Dimension')
+
+    # code for prediction
+    breast_diagnosis = ""
+
+    # Button for prediction
+    if st.button('Breast Cancer Test Result'):
+        breast_prediction = breast_model.predict([[mean_radius, mean_texture, mean_perimeter, mean_area,
+        mean_smoothness, mean_compactness, mean_concavity, mean_concave_points, mean_symmetry, mean_fractal_dimension,
+        radius_error, texture_error, perimeter_error, area_error, smoothness_error, compactness_error,
+        concavity_error, concave_points_error, symmetry_error, fractal_dimension_error, worst_radius,
+        worst_texture, worst_perimeter, worst_area, worst_smoothness, worst_compactness, worst_concavity,
+        worst_concavity, worst_symmetry, worst_fractal_dimension]])
+
+    
+        prediction_label = [np.argmax(breast_prediction)]
+
+        if prediction_label[0] == 1:
+            breast_diagnosis = "The person is Diabetic :("
+
+        if prediction_label[0] == 0:
+            breast_diagnosis = "The person not Diabetic :)"
+
+    st.success(breast_diagnosis)
