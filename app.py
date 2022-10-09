@@ -5,18 +5,18 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Loading the saved models 
-with open('/Users/arshad/Desktop/Projects/Multiple-Disease-Prediction/Parkinsons-Disease-Prediction/parkinson_model.sav', 'rb') as parkinson_model:
+with open('Parkinsons-Disease-Prediction/parkinson_model.sav', 'rb') as parkinson_model:
     parkinson_model = pickle.load(parkinson_model)
 
 
-with open('/Users/arshad/Desktop/Projects/Multiple-Disease-Prediction/Diabetes-Prediction/diabetes_model.sav', 'rb') as diabetes_model:
+with open('Diabetes-Prediction/diabetes_model.sav', 'rb') as diabetes_model:
     diabetes_model = pickle.load(diabetes_model)
 
 
-with open('/Users/arshad/Desktop/Projects/Multiple-Disease-Prediction/Heart-Disease-Prediction/heart_model.sav', 'rb') as heart_model:
+with open('Heart-Disease-Prediction/heart_model.sav', 'rb') as heart_model:
     heart_model = pickle.load(heart_model)
 
-with open('/Users/arshad/Desktop/Projects/Multiple-Disease-Prediction/Breast-Cancer-Prediction/breast_model.sav', 'rb') as breast_model:
+with open('Breast-Cancer-Prediction/breast_model.sav', 'rb') as breast_model:
     breast_model = pickle.load(breast_model)
 
 
